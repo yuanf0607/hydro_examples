@@ -32,12 +32,17 @@ static constexpr int this_ndim = 2;
 const double global_cfl = 0.1;
 const double global_final_time = 1.;
 const int global_ngz = 4; 
-const int global_ext = 100; 
+
+
+const int global_ext = 128; 
+
+
 const double global_dx = 1./global_ext; 
 const double global_dy = 1./global_ext; 
 const double global_origin_x = 0.;
 const double global_origin_y = 0.;
-const int output_iteration = 128;
+const int output_iteration = 256;
+
 
 static constexpr bool HO = true; // High order scheme (4th) 
 
@@ -63,7 +68,8 @@ using this_storage = SimpleStorage<this_grid_t,this_system_t,double>;
 
 // CHANGE THIS LINE
 ////////////////////
-using this_reconstruct_t = WenoZ_Reconstruct<false,double>;
+//using this_reconstruct_t = WenoZ_Reconstruct<false,double>;
+using this_reconstruct_t = XPPM_Reconstruct<false,double>;
 ////////////////////
 
 using this_riemann_t = HLL_RiemannSolver<this_system_t>;

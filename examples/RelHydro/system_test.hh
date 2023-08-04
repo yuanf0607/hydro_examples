@@ -41,30 +41,12 @@ public:
   template <int dir, typename Td>
   static inline decltype(auto) compute_flux(std::array<Td, num_vars> &U) {
 
-    // Compute fluxes for all components, here we have only one!
-
-    auto const z2 = U[WVX] * U[WVX] + U[WVY] * U[WVY] + U[WVZ] * U[WVZ];
-    auto const lorentz = std::sqrt(1. + z2);
-
-    // Need EOS call here!!
-    T eps_tot;
-    auto press = EOS_t::press_eps__rho_eps_th(eps_tot, U[RHOB], U[EPS]);
-
-    auto const rhoh = U[RHOB] + (press + eps_tot);
-
-    auto const stx = rhoh * U[WVX];
-    auto const sty = rhoh * U[WVY];
-    auto const stz = rhoh * U[WVZ];
-
-//    auto const taud = rhoh*lorentz - U[RHOB];
-//    This should also work without double precision for small velocities
-    auto const taud = (press + eps_tot) * lorentz + U[RHOB]*z2/(lorentz+1.);
-
-    auto result = std::array<Td, num_vars>{
-        {U[RHOB] * U[WVX + dir], (taud)*U[WVX + dir], stx * U[WVX + dir],
-         sty * U[WVX + dir], stz * U[WVX + dir]}};
-
-    result[STX + dir] += press;
+    std::array<double, num_vars> result{{
+      // RHO FLUX,
+      // ENERGY FLUX, // NOTE THAT WE USE ENERGY-CONSERVED DENSITY
+      // MOMENTUM FLUX,
+    
+    }};
 
     return result;
   };
@@ -86,24 +68,20 @@ public:
   template <typename Td>
   static inline void switch_to_cons_single(std::array<Td, num_vars> &U) {
 
-    auto const z2 = U[WVX] * U[WVX] + U[WVY] * U[WVY] + U[WVZ] * U[WVZ];
-    auto const lorentz2 = 1. + z2;
-    auto const lorentz = std::sqrt(lorentz2);
+    // IMPLEMENT CONSERVED VARIABLES
+
 
     // Need EOS call here!!
     T eps_tot;
     auto press = EOS_t::press_eps__rho_eps_th(eps_tot, U[RHOB], U[EPS]);
 
-    U[RHOSTAR] *= lorentz;
-    auto const rhohW = U[RHOSTAR] + (press + eps_tot) * lorentz;
+    U[RHOSTAR] = ...;
 
-    U[STX] *= rhohW;
-    U[STY] *= rhohW;
-    U[STZ] *= rhohW;
+    U[STX] = ...;
+    U[STY] = ...;
+    U[STZ] = ...;
 
-//    U[TAUENERGY] = rhohW * lorentz - press -  U[RHOSTAR];
-//    This should also work without double precision for small velocities
-   U[TAUENERGY]  = press*z2 + eps_tot * lorentz2 + U[RHOSTAR]*z2/(lorentz+1.);
+   U[TAUENERGY]  = ...;
 
     return;
   };
