@@ -27,17 +27,96 @@
 #include "./../../system.hh"
 #include "./initial_data.hh"
 
+//A (default)
+static constexpr int this_ndim = 1; //The number of dimensions for the simulation (1D in this case).
+const double global_cfl = 0.3; //The CFL number, used to calculate the time step size.
+const double global_final_time = 0.4; //The final time for the simulation.
+const int global_ngz = 4; //The number of ghost zones used in the grid.
+const int global_ext = 400; //The extent of the grid (number of cells) in the simulation domain.
+const double global_dx = 1./global_ext; //The grid spacing calculated from the grid extent.
+const double global_origin_x = -0.5; //The position of the origin of the grid.
+const int output_iteration = 100; //The interval at which the simulation data will be output.
 
-static constexpr int this_ndim = 1;
-const double global_cfl = 0.3;
-const double global_final_time = 0.4;
+
+/*B
+static constexpr int this_ndim = 1; 
+const double global_cfl = 0.3; 
+const double global_final_time = 0.4; 
+const int global_ngz = 4; 
+const int global_ext = 800; //doubled
+const double global_dx = 1./global_ext; 
+const double global_origin_x = -0.5;
+const int output_iteration = 100; 
+*/
+
+/*C
+static constexpr int this_ndim = 1; 
+const double global_cfl = 0.3; 
+const double global_final_time = 0.4; 
 const int global_ngz = 4; 
 const int global_ext = 400; 
 const double global_dx = 1./global_ext; 
 const double global_origin_x = -0.5;
-const int output_iteration = 100;
+const int output_iteration = 200; //doubled
+*/
+
+/*D
+static constexpr int this_ndim = 1; 
+const double global_cfl = 0.3; 
+const double global_final_time = 0.4; 
+const int global_ngz = 4; 
+const int global_ext = 400; 
+const double global_dx = 1./global_ext; 
+const double global_origin_x = -0.5;
+const int output_iteration = 50; //halfed
+*/
+
+/*E
+static constexpr int this_ndim = 1; 
+const double global_cfl = 0.3; 
+const double global_final_time = 0.8; //doubled
+const int global_ngz = 4; 
+const int global_ext = 400; 
+const double global_dx = 1./global_ext; 
+const double global_origin_x = -0.5;
+const int output_iteration = 100; 
+*/
+
+/*F
+static constexpr int this_ndim = 1; 
+const double global_cfl = 0.3; 
+const double global_final_time = 1.6; //doubled again
+const int global_ngz = 4; 
+const int global_ext = 400; 
+const double global_dx = 1./global_ext; 
+const double global_origin_x = -0.5;
+const int output_iteration = 100; 
+*/
+
+/*G
+static constexpr int this_ndim = 1; 
+const double global_cfl = 0.3; 
+const double global_final_time = 0.4; 
+const int global_ngz = 4; 
+const int global_ext = 200; //halfed
+const double global_dx = 1./global_ext; 
+const double global_origin_x = -0.5;
+const int output_iteration = 100; 
+*/
+
+/*failed
+static constexpr int this_ndim = 2; 
+const double global_cfl = 0.3; 
+const double global_final_time = 0.4; 
+const int global_ngz = 4; 
+const int global_ext = 400; 
+const double global_dx = 1./global_ext; 
+const double global_origin_x = -0.5;
+const int output_iteration = 100; 
+*/
 
 static constexpr bool HO = false; // High order scheme (4th) 
+// The boolean flag "HO" is set to "false," indicating a low-order scheme is used.
 
 using this_system_t = SRHD<this_ndim,double,SimpleGammaLaw<double>>;
 
@@ -99,6 +178,7 @@ int main(){
   FlatBC<this_ndim>(U);
   output(U,tstepper.get_iteration());
 
+  
   this_system_t::switch_to_cons(U);
 
   //Initial data is pointwise, now switch to volumes
@@ -109,7 +189,7 @@ int main(){
 
   while(tstepper.get_current_time() < global_final_time){
     tstepper.advance(U,evolve_func);
-
+    // Output data at specified intervals.
     if(tstepper.get_iteration() % output_iteration == 0){
       
       std::cout << "Iteration: " << tstepper.get_iteration() << "  Writing output" << std::endl;

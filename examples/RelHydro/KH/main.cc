@@ -29,7 +29,7 @@
 
 #include<chrono>
 
-
+//A
 static constexpr int this_ndim = 2;
 const double global_cfl = 0.3;
 const double global_final_time = 3.;
@@ -41,6 +41,67 @@ const double global_dy = 2./global_ext_y;
 const double global_origin_x = -0.5;
 const double global_origin_y = -1.0;
 const int output_iteration = 10000;
+
+
+/*B
+static constexpr int this_ndim = 2;
+const double global_cfl = 0.3;
+const double global_final_time = 6.;//doubled
+const int global_ngz = 4; 
+const int global_ext_x = 128; 
+const int global_ext_y = 256; 
+const double global_dx = 1./global_ext_x; 
+const double global_dy = 2./global_ext_y; 
+const double global_origin_x = -0.5;
+const double global_origin_y = -1.0;
+const int output_iteration = 10000;
+*/
+
+/*C
+static constexpr int this_ndim = 2;
+const double global_cfl = 0.3;
+const double global_final_time = 4.;//increased
+const int global_ngz = 4; 
+const int global_ext_x = 128; 
+const int global_ext_y = 256; 
+const double global_dx = 1./global_ext_x; 
+const double global_dy = 2./global_ext_y; 
+const double global_origin_x = -0.5;
+const double global_origin_y = -1.0;
+const int output_iteration = 10000;
+*/
+
+/*D
+static constexpr int this_ndim = 2;
+const double global_cfl = 0.3;
+const double global_final_time = 5.;//increased
+const int global_ngz = 4; 
+const int global_ext_x = 128; 
+const int global_ext_y = 256; 
+const double global_dx = 1./global_ext_x; 
+const double global_dy = 2./global_ext_y; 
+const double global_origin_x = -0.5;
+const double global_origin_y = -1.0;
+const int output_iteration = 10000;
+*/
+
+/*E
+static constexpr int this_ndim = 2;
+const double global_cfl = 0.3;
+const double global_final_time = 4.5;//increased
+const int global_ngz = 4; 
+const int global_ext_x = 128; 
+const int global_ext_y = 256; 
+const double global_dx = 1./global_ext_x; 
+const double global_dy = 2./global_ext_y; 
+const double global_origin_x = -0.5;
+const double global_origin_y = -1.0;
+const int output_iteration = 10000;
+*/
+
+
+
+
 
 
 const int info_it = 10;

@@ -21,12 +21,59 @@
 
 struct KelvinHelmholtz2D{
 
+  //default
   static constexpr double A = 0.1;
   static constexpr double a = 0.01;
   static constexpr double sigma = 0.1;
   static constexpr double Vshear = 0.5;
   static constexpr double rho0 = 0.505;
   static constexpr double rho1 = 0.495;
+  
+
+  /*F
+  static constexpr double A = 0.1;
+  static constexpr double a = 0.01;
+  static constexpr double sigma = 0.1;
+  static constexpr double Vshear = 0.75; //increased
+  static constexpr double rho0 = 0.505;
+  static constexpr double rho1 = 0.495;
+  */
+
+  /*G
+  static constexpr double A = 0.1;
+  static constexpr double a = 0.01;
+  static constexpr double sigma = 0.1;
+  static constexpr double Vshear = 0.25; //decreased
+  static constexpr double rho0 = 0.505;
+  static constexpr double rho1 = 0.495;
+  */
+
+  /*H
+  static constexpr double A = 0.1;
+  static constexpr double a = 0.01;
+  static constexpr double sigma = 0.1;
+  static constexpr double Vshear = 0.5;
+  static constexpr double rho0 = 0.52; //changed
+  static constexpr double rho1 = 0.48; //changed
+  */
+
+  /*I
+  static constexpr double A = 0.1;
+  static constexpr double a = 0.01;
+  static constexpr double sigma = 0.1;
+  static constexpr double Vshear = 0.5;
+  static constexpr double rho0 = 0.6; //changed
+  static constexpr double rho1 = 0.4; //changed
+  */
+  
+  /*J
+  static constexpr double A = 0.1;
+  static constexpr double a = 0.01;
+  static constexpr double sigma = 0.2; //doubled
+  static constexpr double Vshear = 0.5;
+  static constexpr double rho0 = 0.505;
+  static constexpr double rho1 = 0.495;
+  */
 
 
   template<typename Tstorage>

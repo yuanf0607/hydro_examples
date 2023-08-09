@@ -27,7 +27,7 @@
 #include "./../../system.hh"
 #include "./initial_data.hh"
 
-
+//A
 static constexpr int this_ndim = 1;
 const double global_cfl = 0.3;
 const double global_final_time = 0.4;
@@ -36,6 +36,42 @@ const int global_ext = 300;
 const double global_dx = 1./global_ext; 
 const double global_origin_x = -0.5;
 const int output_iteration = 100;
+
+
+/*B
+static constexpr int this_ndim = 1;
+const double global_cfl = 0.3;
+const double global_final_time = 0.8; //doubled
+const int global_ngz = 4; 
+const int global_ext = 300; 
+const double global_dx = 1./global_ext; 
+const double global_origin_x = -0.5;
+const int output_iteration = 100;
+*/
+
+/*C
+static constexpr int this_ndim = 1;
+const double global_cfl = 0.3;
+const double global_final_time = 0.4; 
+const int global_ngz = 4; 
+const int global_ext = 500; //increased
+const double global_dx = 1./global_ext; 
+const double global_origin_x = -0.5;
+const int output_iteration = 100;
+*/
+
+/*D
+static constexpr int this_ndim = 1;
+const double global_cfl = 0.3;
+const double global_final_time = 0.4;
+const int global_ngz = 4; 
+const int global_ext = 300; 
+const double global_dx = 1./global_ext; 
+const double global_origin_x = -0.5;
+const int output_iteration = 200; //doubled
+*/
+
+
 
 static constexpr bool HO = true; // High order scheme (4th) 
 

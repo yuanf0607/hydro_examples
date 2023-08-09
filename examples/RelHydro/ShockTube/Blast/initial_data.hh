@@ -29,6 +29,9 @@ struct BlastProblem{
     for(int ijk = 0; ijk < U.ndof; ++ijk){
       auto const x = U.grid.get_coords(0,ijk);
 
+
+
+    //default
       if(x < 0.){
       	U[ijk + U.ndof*0] = 1.;
       	U[ijk + U.ndof*1] = 1000.;
@@ -43,6 +46,42 @@ struct BlastProblem{
       	U[ijk + U.ndof*3] = 0.;
       	U[ijk + U.ndof*4] = 0.;
       }
+    
+
+    /*H
+      if(x < 0.){
+      	U[ijk + U.ndof*0] = 1.;
+      	U[ijk + U.ndof*1] = 1000.;
+      	U[ijk + U.ndof*2] = 0.;
+      	U[ijk + U.ndof*3] = 0.;
+      	U[ijk + U.ndof*4] = 0.;
+      }
+      else{
+      	U[ijk + U.ndof*0] = 1.;
+      	U[ijk + U.ndof*1] = 0.1;//changed
+      	U[ijk + U.ndof*2] = 0.;
+      	U[ijk + U.ndof*3] = 0.;
+      	U[ijk + U.ndof*4] = 0.;
+      }
+    */
+
+    /*I
+      if(x < 0.){
+      	U[ijk + U.ndof*0] = 1.;
+      	U[ijk + U.ndof*1] = 5000.;//changed
+      	U[ijk + U.ndof*2] = 0.;
+      	U[ijk + U.ndof*3] = 0.;
+      	U[ijk + U.ndof*4] = 0.;
+      }
+      else{
+      	U[ijk + U.ndof*0] = 1.;
+      	U[ijk + U.ndof*1] = 0.01;
+      	U[ijk + U.ndof*2] = 0.;
+      	U[ijk + U.ndof*3] = 0.;
+      	U[ijk + U.ndof*4] = 0.;
+      }
+    */
+
 
       	U[ijk + U.ndof*1] /= SimpleGammaLaw<double>::Gamma - 1.;
     }
